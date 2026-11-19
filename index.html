@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AZURENEX | PlayStation & Xbox 즉시 다운로드 디지털 게임 스토어</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azure: #007FFF;
+      --azure-dark: #0059B3;
+      --azure-glow: rgba(0, 127, 255, 0.35);
+      --lime: #A3FF12;
+      --lime-dark: #7ACC00;
+      --lime-glow: rgba(163, 255, 18, 0.35);
+      --bg-deep: #070D19;
+      --bg-panel: #0E172A;
+      --bg-card: #13203B;
+      --border-line: rgba(0, 127, 255, 0.28);
+      --text-main: #F1F6FF;
+      --text-muted: #94A8C7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nanum Gothic', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+
+    /* Top Announcement Bar */
+    .top-banner {
+      background: linear-gradient(90deg, var(--azure-dark), var(--azure), #0099FF);
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      letter-spacing: 0.3px;
+    }
+    .top-banner span {
+      background: var(--lime);
+      color: #070D19;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-right: 8px;
+      font-weight: 800;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 13, 25, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-line);
+    }
+    .nav-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--azure), var(--lime));
+      display: grid;
+      place-items: center;
+      color: #070D19;
+      font-weight: 900;
+      font-size: 18px;
+    }
+    .brand em {
+      font-style: normal;
+      color: var(--lime);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .nav-links a:hover {
+      color: var(--lime);
+    }
+
+    .user-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .member-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    .tier-badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .tier-BRONZE { background: #7C4D2B; color: #FFE3C8; }
+    .tier-SILVER { background: #64748B; color: #F8FAFC; }
+    .tier-GOLD { background: #EAB308; color: #0F172A; }
+    .tier-VIP { background: var(--lime); color: #070D19; box-shadow: 0 0 10px var(--lime-glow); }
+
+    .point-tag {
+      color: var(--lime);
+      font-weight: 800;
+    }
+
+    .btn {
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+    .btn-azure {
+      background: var(--azure);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--azure-glow);
+    }
+    .btn-azure:hover {
+      background: #1A8CFF;
+      transform: translateY(-1px);
+    }
+    .btn-lime {
+      background: var(--lime);
+      color: #070D19;
+      box-shadow: 0 4px 14px var(--lime-glow);
+    }
+    .btn-lime:hover {
+      background: #B5FF3D;
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-line);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    /* Hero Carousel */
+    .hero-section {
+      max-width: 1320px;
+      margin: 24px auto 40px;
+      padding: 0 24px;
+    }
+    .hero-slider {
+      position: relative;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-line);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: scale(1.02);
+    }
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(7, 13, 25, 0.92) 0%, rgba(7, 13, 25, 0.55) 55%, rgba(7, 13, 25, 0.15) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 56px;
+    }
+    .slide-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      background: rgba(0, 127, 255, 0.22);
+      border: 1px solid var(--azure);
+      color: var(--lime);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .slide-title {
+      font-family: 'Orbitron', 'Nanum Gothic', sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+    }
+    .slide-desc {
+      max-width: 560px;
+      color: #D2E2FA;
+      font-size: 16px;
+      margin-bottom: 26px;
+    }
+    .slide-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .slide-price {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--lime);
+      margin-right: 8px;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(7, 13, 25, 0.72);
+      border: 1px solid var(--border-line);
+      color: #fff;
+      font-size: 20px;
+      display: grid;
+      place-items: center;
+      z-index: 10;
+      transition: 0.2s;
+    }
+    .slider-arrow:hover {
+      background: var(--azure);
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+    .slider-prev { left: 18px; }
+    .slider-next { right: 18px; }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 56px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .dot {
+      width: 28px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.3);
+      transition: 0.3s;
+    }
+    .dot.active {
+      width: 46px;
+      background: var(--lime);
+      box-shadow: 0 0 10px var(--lime);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1320px;
+      margin: 0 auto 64px;
+      padding: 0 24px;
+    }
+
+    /* Section Header */
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .section-head h2 {
+      font-size: 26px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-head h2::before {
+      content: "";
+      width: 6px;
+      height: 26px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, var(--lime), var(--azure));
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Tier & Point System Banner */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 52px;
+    }
+    .tier-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+      transition: 0.25s;
+    }
+    .tier-card.current-tier {
+      border: 2px solid var(--lime);
+      box-shadow: 0 0 22px rgba(163, 255, 18, 0.16);
+    }
+    .tier-card h3 {
+      font-size: 18px;
+      margin: 10px 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tier-rate {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--lime);
+    }
+    .tier-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .platform-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--azure);
+      border-color: var(--azure);
+      color: #fff;
+    }
+    .search-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      padding: 9px 14px;
+      color: #fff;
+      width: 260px;
+      font-size: 14px;
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: var(--lime);
+    }
+
+    /* Game Grid */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .game-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--lime);
+      box-shadow: 0 14px 32px rgba(0, 127, 255, 0.25);
+    }
+    .card-thumb {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+    }
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .game-card:hover .card-thumb img {
+      transform: scale(1.06);
+    }
+    .platform-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+    }
+    .p-badge {
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+    .p-PS5 { background: #00439C; color: #fff; border: 1px solid #3B82F6; }
+    .p-XBOX { background: #107C10; color: #fff; border: 1px solid var(--lime); }
+
+    .instant-tag {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(7, 13, 25, 0.88);
+      border: 1px solid var(--lime);
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .card-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-genre {
+      font-size: 12px;
+      color: var(--azure);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .card-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .price-box .price {
+      font-size: 19px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .price-box .earn-pt {
+      display: block;
+      font-size: 11px;
+      color: var(--lime);
+      font-weight: 700;
+    }
+
+    /* Instant Download Library Vault */
+    .library-section {
+      background: linear-gradient(135deg, rgba(0, 127, 255, 0.14), rgba(163, 255, 18, 0.08));
+      border: 1px solid var(--azure);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 56px;
+    }
+    .library-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .lib-item {
+      background: var(--bg-deep);
+      border: 1px solid var(--border-line);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .key-box {
+      background: #0B1528;
+      border: 1px dashed var(--lime);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      color: var(--lime);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .progress-wrap {
+      height: 8px;
+      background: #1E293B;
+      border-radius: 999px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--azure), var(--lime));
+      transition: width 0.2s;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 16, 0.82);
+      backdrop-filter: blur(6px);
+      display: none;
+      place-items: center;
+      z-index: 999;
+      padding: 20px;
+    }
+    .modal-backdrop.open {
+      display: grid;
+    }
+    .modal-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--azure);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 480px;
+      padding: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.75);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 22px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #CBD5E1;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: var(--bg-deep);
+      border: 1px solid var(--border-line);
+      color: #fff;
+      font-size: 14px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin: 8px 0;
+    }
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--lime);
+      border-top: 1px solid var(--border-line);
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-panel);
+      border-left: 4px solid var(--lime);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      font-size: 14px;
+      font-weight: 700;
+      transform: translateY(120%);
+      transition: transform 0.3s ease;
+      z-index: 1200;
+    }
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-line);
+      background: #050912;
+      padding: 36px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-slider { height: 420px; }
+      .slide-overlay { padding: 28px; }
+      .slide-title { font-size: 28px; }
+      .slider-dots { left: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-banner">
+    <span>INSTANT PLAY</span> 결제 완료 즉시 디지털 라이선스 키 발급 & 초고속 다이렉트 다운로드 지원 (PS5 / Xbox Series X|S)
+  </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-badge">A</div>
+        AZURE<em>NEX</em>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#store">게임 스토어</a>
+        <a href="#membership">등급 & 포인트</a>
+        <a href="#library">내 라이브러리 (<span id="libCountNav">1</span>)</a>
+      </nav>
+
+      <div class="user-controls">
+        <div class="member-pill" id="memberStatusBox">
+          <span class="tier-badge tier-GOLD" id="navTierBadge">GOLD</span>
+          <strong id="navUserName">게이머_박상현</strong>
+          <span>|</span>
+          <span class="point-tag"><span id="navPoints">12,500</span> P</span>
+        </div>
+        <button class="btn btn-outline" onclick="openAuthModal()">회원가입 / 로그인</button>
+        <button class="btn btn-lime" onclick="openCartModal()">장바구니 (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Slider (5 Featured Games) -->
+  <section class="hero-section">
+    <div class="hero-slider" id="heroSlider">
+      <div class="slide active">
+        <img src="img/hero_gta6.jpg" alt="GTA 6">
+        <div class="slide-overlay">
+          <div class="slide-chip">🔥 BLOCKBUSTER PRE-LOAD • PS5 & XBOX</div>
+          <h1 class="slide-title">GRAND THEFT AUTO VI</h1>
+          <p class="slide-desc">바이스 시티와 레오니다 주를 무대로 펼쳐지는 압도적 스케일의 오픈월드 범죄 서사극. 결제 즉시 디지털 코드 발급 및 사전 다운로드 시작.</p>
+          <div class="slide-actions">
+            <span class="slide-price">₩89,800</span>
+            <button class="btn btn-lime" onclick="quickBuy(1)">⚡ 즉시 결제 & 다운로드</button>
+            <button class="btn btn-azure" onclick="addToCart(1)">장바구니 담기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="img/hero_gow_laufey.jpg" alt="God of War Laufey">
+        <div class="slide-overlay">
+          <div class="slide-chip">⚔️ PLAYSTATION EXCLUSIVE • 4K HDR</div>
+          <h1 class="slide-title">GOD OF WAR: LAUFEY</h1>
+          <p class="slide-desc">요툰하임의 마지막 수호자 라우페이의 숨겨진 여정. 북유럽 신화의 기원을 밝히는 시네마틱 액션 어드벤처.</p>
+          <div class="slide-actions">
+            <span class="slide-price">₩79,800</span>
+            <button class="btn btn-lime" onclick="quickBuy(2)">⚡ 즉시 결제 & 다운로드</button>
+            <button class="btn btn-azure" onclick="addToCart(2)">장바구니 담기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="img/hero_ghost_yotei.jpg" alt="Ghost of Yotei">
+        <div class="slide-overlay">
+          <div class="slide-chip">🗡️ NEXT-GEN SAMURAI ACTION</div>
+          <h1 class="slide-title">GHOST OF YOTEI</h1>
+          <p class="slide-desc">설원 위의 요테이 산을 배경으로 새로운 망령 아츠의 복수가 시작된다. 듀얼센스 햅틱 및 초고속 SSD 완벽 대응.</p>
+          <div class="slide-actions">
+            <span class="slide-price">₩79,800</span>
+            <button class="btn btn-lime" onclick="quickBuy(3)">⚡ 즉시 결제 & 다운로드</button>
+            <button class="btn btn-azure" onclick="addToCart(3)">장바구니 담기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="img/hero_halo_zenith.jpg" alt="Halo Zenith Protocol">
+        <div class="slide-overlay">
+          <div class="slide-chip">🛡️ XBOX SERIES X|S OPTIMIZED</div>
+          <h1 class="slide-title">HALO: ZENITH PROTOCOL</h1>
+          <p class="slide-desc">UNSC 궤도 방어 사령부의 최정예 스파르탄 작전. 120FPS 멀티플레이어와 확장된 캠페인을 지금 바로 플레이하세요.</p>
+          <div class="slide-actions">
+            <span class="slide-price">₩69,800</span>
+            <button class="btn btn-lime" onclick="quickBuy(4)">⚡ 즉시 결제 & 다운로드</button>
+            <button class="btn btn-azure" onclick="addToCart(4)">장바구니 담기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="img/hero_cyber_odyssey.jpg" alt="Nexus Zero Overdrive">
+        <div class="slide-overlay">
+          <div class="slide-chip">⚡ RAY-TRACED CYBERPUNK FPS</div>
+          <h1 class="slide-title">NEXUS ZERO: OVERDRIVE</h1>
+          <p class="slide-desc">네온 메가시티의 신경망을 해킹하고 하이퍼 스피드 전술 전투를 경험하세요. PS5 & Xbox 크로스 프로그레션 지원.</p>
+          <div class="slide-actions">
+            <span class="slide-price">₩64,800</span>
+            <button class="btn btn-lime" onclick="quickBuy(5)">⚡ 즉시 결제 & 다운로드</button>
+            <button class="btn btn-azure" onclick="addToCart(5)">장바구니 담기</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="slider-arrow slider-prev" onclick="moveSlide(-1)">❮</button>
+      <button class="slider-arrow slider-next" onclick="moveSlide(1)">❯</button>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Membership Tier & Point System -->
+    <section id="membership">
+      <div class="section-head">
+        <div>
+          <h2>멤버십 등급별 포인트 적립 혜택</h2>
+          <p class="section-sub">누적 구매 금액에 따라 등급이 자동 승급되며, 결제 시 최대 10% 포인트가 즉시 적립됩니다.</p>
+        </div>
+        <button class="btn btn-outline" onclick="openAuthModal()">내 등급 변경 / 신규 가입</button>
+      </div>
+
+      <div class="tier-grid" id="tierGrid"></div>
+    </section>
+
+    <!-- Game Catalog -->
+    <section id="store">
+      <div class="section-head">
+        <div>
+          <h2>PlayStation & Xbox 디지털 스토어</h2>
+          <p class="section-sub">결제 즉시 활성화 코드가 발급되며 클라이언트 원클릭 다운로드가 실행됩니다.</p>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <div class="platform-tabs">
+          <button class="tab-btn active" onclick="filterGames('ALL', this)">전체 게임 (8)</button>
+          <button class="tab-btn" onclick="filterGames('PS5', this)">PlayStation 5</button>
+          <button class="tab-btn" onclick="filterGames('XBOX', this)">Xbox Series X|S</button>
+        </div>
+        <input type="text" class="search-box" id="searchInput" placeholder="게임 타이틀, 장르 검색..." oninput="renderGames()" />
+      </div>
+
+      <div class="game-grid" id="gameGrid"></div>
+    </section>
+
+    <!-- Instant Download Vault -->
+    <section id="library" class="library-section">
+      <div class="section-head" style="margin-bottom: 8px;">
+        <div>
+          <h2>⚡ 즉시 플레이 & 다운로드 보관함</h2>
+          <p class="section-sub">결제가 완료된 타이틀은 대기 시간 없이 리딤 코드 확인 및 다이렉트 설치가 가능합니다.</p>
+        </div>
+      </div>
+      <div class="library-list" id="libraryList"></div>
+    </section>
+  </main>
+
+  <!-- Auth / Membership Registration Modal -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+      <h3 style="font-size: 22px; margin-bottom: 6px;">AZURENEX 멤버십 가입 / 전환</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">신규 가입 시 웰컴 5,000 포인트가 즉시 지급됩니다.</p>
+
+      <div class="form-group">
+        <label>게이머 닉네임</label>
+        <input type="text" id="inputNickname" placeholder="예: 박상현_PS5" />
+      </div>
+      <div class="form-group">
+        <label>이메일 (디지털 코드 수신용)</label>
+        <input type="email" id="inputEmail" placeholder="gamer@azurenex.kr" />
+      </div>
+      <div class="form-group">
+        <label>주력 콘솔 플랫폼</label>
+        <select id="inputConsole">
+          <option value="PS5 & Xbox 듀얼 유저">PS5 & Xbox Series X|S 듀얼 유저</option>
+          <option value="PlayStation 5">PlayStation 5</option>
+          <option value="Xbox Series X|S">Xbox Series X|S</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>멤버십 등급 체험 선택</label>
+        <select id="inputTier">
+          <option value="BRONZE">BRONZE (기본 2% 포인트 적립)</option>
+          <option value="SILVER">SILVER (누적 15만원 이상 • 4% 적립)</option>
+          <option value="GOLD" selected>GOLD (누적 40만원 이상 • 7% 적립)</option>
+          <option value="VIP">VIP (누적 80만원 이상 • 10% 적립)</option>
+        </select>
+      </div>
+      <button class="btn btn-lime" style="width: 100%; padding: 12px; font-size: 15px;" onclick="registerMember()">가입 완료 & 5,000P 받기</button>
+    </div>
+  </div>
+
+  <!-- Cart & Instant Checkout Modal -->
+  <div class="modal-backdrop" id="cartModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('cartModal')">✕</button>
+      <h3 style="font-size: 22px; margin-bottom: 14px;">장바구니 & 즉시 결제</h3>
+
+      <div id="cartItemsContainer" style="max-height: 220px; overflow-y: auto; margin-bottom: 14px;"></div>
+
+      <div class="form-group">
+        <label>보유 포인트 사용 (보유: <span id="modalAvailPoints" style="color:var(--lime);">0</span> P)</label>
+        <div style="display:flex; gap:8px;">
+          <input type="number" id="usePointsInput" value="0" min="0" step="100" oninput="updateCheckoutSummary()" />
+          <button class="btn btn-outline" type="button" onclick="useAllPoints()">전액 사용</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>결제 수단</label>
+        <select id="paymentMethod">
+          <option value="AZURENEX 간편카드결제">AZURENEX 원클릭 카드결제</option>
+          <option value="카카오페이 / 토스페이">카카오페이 / 토스페이 즉시승인</option>
+          <option value="PSN / Xbox 월렛 연동">PSN / Xbox 월렛 통합결제</option>
+        </select>
+      </div>
+
+      <div class="summary-row">
+        <span>상품 합계</span>
+        <span id="sumSubtotal">₩0</span>
+      </div>
+      <div class="summary-row">
+        <span>포인트 할인</span>
+        <span id="sumDiscount" style="color: var(--lime);">-₩0</span>
+      </div>
+      <div class="summary-row">
+        <span>예상 적립 포인트 (<span id="sumTierLabel">GOLD 7%</span>)</span>
+        <span id="sumEarnPoints" style="color: #60A5FA;">+0 P</span>
+      </div>
+      <div class="summary-total">
+        <span>최종 결제 금액</span>
+        <span id="sumFinal">₩0</span>
+      </div>
+
+      <button class="btn btn-lime" style="width: 100%; padding: 13px; font-size: 15px; margin-top: 16px;" onclick="processCheckout()">
+        ⚡ 결제 확정 및 즉시 다운로드 잠금해제
+      </button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <footer>
+    <p style="color:#fff; font-weight:800; margin-bottom:6px;">AZURENEX DIGITAL GAME STORE</p>
+    <p>PlayStation 5 & Xbox Series X|S 공식 디지털 코드 스토어 • 결제 즉시 다운로드 보장 시스템</p>
+  </footer>
+
+  <script>
+    const TIERS = {
+      BRONZE: { name: "BRONZE", rate: 0.02, minSpend: "신규 ~ 15만원 미만", desc: "결제 금액의 2% 포인트 적립 및 기본 다운로드 서버 지원" },
+      SILVER: { name: "SILVER", rate: 0.04, minSpend: "누적 15만원 이상", desc: "결제 금액의 4% 포인트 적립 + 주말 추가 1,000P 쿠폰" },
+      GOLD:   { name: "GOLD",   rate: 0.07, minSpend: "누적 40만원 이상", desc: "결제 금액의 7% 포인트 적립 + 신작 사전 다운로드 우선권" },
+      VIP:    { name: "VIP",    rate: 0.10, minSpend: "누적 80만원 이상", desc: "결제 금액의 10% 최고 적립 + 전용 기가비트 고속 다운로드" }
+    };
+
+    const GAMES = [
+      { id: 1, title: "Grand Theft Auto VI", genre: "오픈월드 액션", platforms: ["PS5", "XBOX"], price: 89800, size: "148.5 GB", img: "img/card_gta6.jpg" },
+      { id: 2, title: "God of War: Laufey", genre: "신화 액션 RPG", platforms: ["PS5"], price: 79800, size: "94.2 GB", img: "img/card_gow_laufey.jpg" },
+      { id: 3, title: "Ghost of Yotei", genre: "사무라이 어드벤처", platforms: ["PS5", "XBOX"], price: 79800, size: "86.0 GB", img: "img/card_ghost_yotei.jpg" },
+      { id: 4, title: "Forza Apex Horizon", genre: "심케이드 레이싱", platforms: ["XBOX"], price: 69800, size: "112.4 GB", img: "img/card_forza_apex.jpg" },
+      { id: 5, title: "Marvel's Spider-Man: Beyond", genre: "히어로 액션", platforms: ["PS5"], price: 74800, size: "82.1 GB", img: "img/card_spider_verse.jpg" },
+      { id: 6, title: "Elden Ring: Eclipse Edition", genre: "다크 판타지 RPG", platforms: ["PS5", "XBOX"], price: 68000, size: "74.8 GB", img: "img/card_elden_eclipse.jpg" },
+      { id: 7, title: "Gears of War: Vanguard", genre: "택티컬 TPS", platforms: ["XBOX"], price: 69800, size: "88.9 GB", img: "img/card_gears_vanguard.jpg" },
+      { id: 8, title: "Stellar Blade II", genre: "하이퍼 스타일리시 액션", platforms: ["PS5", "XBOX"], price: 79800, size: "68.5 GB", img: "img/card_stellar_blade2.jpg" }
+    ];
+
+    let state = {
+      user: {
+        name: "게이머_박상현",
+        email: "sanghyun@azurenex.kr",
+        tier: "GOLD",
+        points: 12500,
+        totalSpent: 420000
+      },
+      cart: [],
+      library: [
+        {
+          id: 3,
+          title: "Ghost of Yotei",
+          platform: "PS5 / XBOX",
+          key: "AZNX-YOTEI-8842-PSXB",
+          size: "86.0 GB",
+          purchasedAt: "방금 전 지급됨"
+        }
+      ],
+      currentFilter: "ALL"
+    };
+
+    // Hero Slider Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("sliderDots");
+
+    slides.forEach((_, idx) => {
+      const dot = document.createElement("button");
+      dot.className = "dot" + (idx === 0 ? " active" : "");
+      dot.onclick = () => goToSlide(idx);
+      dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove("active");
+      dotsContainer.children[currentSlide].classList.remove("active");
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add("active");
+      dotsContainer.children[currentSlide].classList.add("active");
+    }
+
+    function moveSlide(step) {
+      goToSlide(currentSlide + step);
+    }
+
+    setInterval(() => moveSlide(1), 5000);
+
+    // Render Tiers
+    function renderTiers() {
+      const grid = document.getElementById("tierGrid");
+      grid.innerHTML = Object.values(TIERS).map(t => {
+        const isCurrent = state.user.tier === t.name;
+        return `
+          <div class="tier-card ${isCurrent ? 'current-tier' : ''}">
+            <span class="tier-badge tier-${t.name}">${t.name}</span>
+            ${isCurrent ? '<span style="float:right; font-size:11px; color:var(--lime); font-weight:800;">● 현재 내 등급</span>' : ''}
+            <h3><span>적립률</span> <span class="tier-rate">${Math.round(t.rate * 100)}%</span></h3>
+            <strong style="font-size:13px; color:#fff;">조건: ${t.minSpend}</strong>
+            <p>${t.desc}</p>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Render Game Store
+    function filterGames(platform, btn) {
+      state.currentFilter = platform;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderGames();
+    }
+
+    function renderGames() {
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const grid = document.getElementById("gameGrid");
+      const rate = TIERS[state.user.tier].rate;
+
+      const filtered = GAMES.filter(g => {
+        const matchPlatform = state.currentFilter === "ALL" || g.platforms.includes(state.currentFilter);
+        const matchQuery = g.title.toLowerCase().includes(keyword) || g.genre.toLowerCase().includes(keyword);
+        return matchPlatform && matchQuery;
+      });
+
+      grid.innerHTML = filtered.map(g => {
+        const earn = Math.floor(g.price * rate);
+        const owned = state.library.some(item => item.id === g.id);
+        return `
+          <article class="game-card">
+            <div class="card-thumb">
+              <img src="${g.img}" alt="${g.title}" />
+              <div class="platform-badges">
+                ${g.platforms.map(p => `<span class="p-badge p-${p}">${p}</span>`).join("")}
+              </div>
+              <span class="instant-tag">⚡ 즉시 다운로드 (${g.size})</span>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="card-genre">${g.genre}</div>
+                <h3 class="card-title">${g.title}</h3>
+                <div class="card-meta">디지털 에디션 • 결제 후 1초 내 키 발급</div>
+              </div>
+              <div class="card-footer">
+                <div class="price-box">
+                  <span class="price">₩${g.price.toLocaleString()}</span>
+                  <span class="earn-pt">+${earn.toLocaleString()}P (${state.user.tier})</span>
+                </div>
+                ${owned
+                  ? `<button class="btn btn-outline" onclick="scrollToLibrary()">보유중 • 플레이</button>`
+                  : `<div style="display:flex; gap:6px;">
+                      <button class="btn btn-azure" onclick="addToCart(${g.id})">담기</button>
+                      <button class="btn btn-lime" onclick="quickBuy(${g.id})">즉시결제</button>
+                    </div>`
+                }
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    // Cart & Checkout
+    function addToCart(gameId) {
+      if (state.library.some(item => item.id === gameId)) {
+        showToast("이미 라이브러리에 보유 중인 게임입니다!");
+        return;
+      }
+      if (!state.cart.includes(gameId)) {
+        state.cart.push(gameId);
+        updateHeader();
+        showToast("장바구니에 게임이 담겼습니다.");
+      } else {
+        showToast("이미 장바구니에 담긴 타이틀입니다.");
+      }
+    }
+
+    function quickBuy(gameId) {
+      if (state.library.some(item => item.id === gameId)) {
+        scrollToLibrary();
+        showToast("이미 보유 중인 타이틀입니다. 바로 다운로드하세요!");
+        return;
+      }
+      if (!state.cart.includes(gameId)) {
+        state.cart.push(gameId);
+      }
+      updateHeader();
+      openCartModal();
+    }
+
+    function removeFromCart(gameId) {
+      state.cart = state.cart.filter(id => id !== gameId);
+      updateHeader();
+      renderCartModal();
+    }
+
+    function openCartModal() {
+      document.getElementById("usePointsInput").value = 0;
+      renderCartModal();
+      document.getElementById("cartModal").classList.add("open");
+    }
+
+    function renderCartModal() {
+      const container = document.getElementById("cartItemsContainer");
+      document.getElementById("modalAvailPoints").textContent = state.user.points.toLocaleString();
+
+      if (state.cart.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding:20px 0;">장바구니가 비어 있습니다. 스토어에서 게임을 선택해주세요.</p>`;
+      } else {
+        container.innerHTML = state.cart.map(id => {
+          const g = GAMES.find(item => item.id === id);
+          return `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--bg-deep); border-radius:8px; margin-bottom:8px;">
+              <div>
+                <strong style="font-size:14px;">${g.title}</strong>
+                <div style="font-size:12px; color:var(--text-muted);">${g.platforms.join(" / ")} • ${g.size}</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-weight:800;">₩${g.price.toLocaleString()}</span>
+                <button style="background:transparent; color:#F87171; font-weight:800;" onclick="removeFromCart(${g.id})">삭제</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+      updateCheckoutSummary();
+    }
+
+    function useAllPoints() {
+      const subtotal = state.cart.reduce((sum, id) => sum + GAMES.find(g => g.id === id).price, 0);
+      const maxUsable = Math.min(state.user.points, subtotal);
+      document.getElementById("usePointsInput").value = maxUsable;
+      updateCheckoutSummary();
+    }
+
+    function updateCheckoutSummary() {
+      const subtotal = state.cart.reduce((sum, id) => sum + GAMES.find(g => g.id === id).price, 0);
+      let usedPts = parseInt(document.getElementById("usePointsInput").value || "0", 10);
+      if (isNaN(usedPts) || usedPts < 0) usedPts = 0;
+      if (usedPts > state.user.points) usedPts = state.user.points;
+      if (usedPts > subtotal) usedPts = subtotal;
+
+      const finalAmount = subtotal - usedPts;
+      const tierObj = TIERS[state.user.tier];
+      const earnedPts = Math.floor(finalAmount * tierObj.rate);
+
+      document.getElementById("sumSubtotal").textContent = "₩" + subtotal.toLocaleString();
+      document.getElementById("sumDiscount").textContent = "-₩" + usedPts.toLocaleString();
+      document.getElementById("sumTierLabel").textContent = `${tierObj.name} ${Math.round(tierObj.rate * 100)}%`;
+      document.getElementById("sumEarnPoints").textContent = `+${earnedPts.toLocaleString()} P`;
+      document.getElementById("sumFinal").textContent = "₩" + finalAmount.toLocaleString();
+    }
+
+    function processCheckout() {
+      if (state.cart.length === 0) {
+        showToast("결제할 게임을 먼저 담아주세요.");
+        return;
+      }
+      const subtotal = state.cart.reduce((sum, id) => sum + GAMES.find(g => g.id === id).price, 0);
+      const usedPts = Math.min(state.user.points, subtotal, Math.max(0, parseInt(document.getElementById("usePointsInput").value || "0", 10)));
+      const finalAmount = subtotal - usedPts;
+      const earnedPts = Math.floor(finalAmount * TIERS[state.user.tier].rate);
+
+      // Update user points & auto-upgrade tier
+      state.user.points = state.user.points - usedPts + earnedPts;
+      state.user.totalSpent += finalAmount;
+      if (state.user.totalSpent >= 800000) state.user.tier = "VIP";
+      else if (state.user.totalSpent >= 400000) state.user.tier = "GOLD";
+      else if (state.user.totalSpent >= 150000) state.user.tier = "SILVER";
+
+      // Unlock instant download items
+      state.cart.forEach(id => {
+        const g = GAMES.find(item => item.id === id);
+        const randomCode = "AZNX-" + Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.floor(1000 + Math.random() * 9000);
+        state.library.unshift({
+          id: g.id,
+          title: g.title,
+          platform: g.platforms.join(" / "),
+          key: randomCode,
+          size: g.size,
+          purchasedAt: "방금 결제 완료"
+        });
+      });
+
+      state.cart = [];
+      closeModal("cartModal");
+      updateHeader();
+      renderTiers();
+      renderGames();
+      renderLibrary();
+      scrollToLibrary();
+      showToast(`결제 완료! +${earnedPts.toLocaleString()}P 적립 & 즉시 다운로드 활성화!`);
+    }
+
+    // Library & Instant Download Simulation
+    function renderLibrary() {
+      const list = document.getElementById("libraryList");
+      list.innerHTML = state.library.map((item, idx) => `
+        <div class="lib-item">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong>${item.title}</strong>
+            <span style="font-size:11px; color:var(--lime); font-weight:800;">● ${item.purchasedAt}</span>
+          </div>
+          <div style="font-size:12px; color:var(--text-muted);">${item.platform} • 용량 ${item.size}</div>
+          <div class="key-box">
+            <span>KEY: ${item.key}</span>
+            <button style="background:transparent; color:#fff; font-size:11px; text-decoration:underline;" onclick="copyKey('${item.key}')">복사</button>
+          </div>
+          <div class="progress-wrap" id="progWrap-${idx}">
+            <div class="progress-bar" id="progBar-${idx}"></div>
+          </div>
+          <button class="btn btn-azure" id="dlBtn-${idx}" onclick="startInstantDownload(${idx}, '${item.title}')">
+            ⬇ 즉시 다운로드 및 런처 실행
+          </button>
+        </div>
+      `).join("");
+    }
+
+    function startInstantDownload(idx, title) {
+      const wrap = document.getElementById(`progWrap-${idx}`);
+      const bar = document.getElementById(`progBar-${idx}`);
+      const btn = document.getElementById(`dlBtn-${idx}`);
+      wrap.style.display = "block";
+      btn.disabled = true;
+      btn.textContent = "초고속 CDN 서버 연결 중...";
+
+      let pct = 0;
+      const timer = setInterval(() => {
+        pct += 20;
+        bar.style.width = pct + "%";
+        btn.textContent = `다운로드 중... ${pct}% (1.2 Gbps)`;
+        if (pct >= 100) {
+          clearInterval(timer);
+          btn.className = "btn btn-lime";
+          btn.textContent = "▶ 설치 완료 — 지금 바로 플레이";
+          btn.disabled = false;
+          showToast(`[${title}] 설치가 완료되어 즉시 실행할 수 있습니다!`);
+        }
+      }, 280);
+    }
+
+    function copyKey(key) {
+      navigator.clipboard?.writeText(key);
+      showToast(`디지털 리딤 코드(${key})가 클립보드에 복사되었습니다.`);
+    }
+
+    // Auth Modal
+    function openAuthModal() {
+      document.getElementById("authModal").classList.add("open");
+    }
+
+    function registerMember() {
+      const nick = document.getElementById("inputNickname").value.trim() || "신규게이머";
+      const tier = document.getElementById("inputTier").value;
+      state.user.name = nick;
+      state.user.tier = tier;
+      state.user.points += 5000;
+      closeModal("authModal");
+      updateHeader();
+      renderTiers();
+      renderGames();
+      showToast(`${nick}님 환영합니다! 가입 축하 5,000P가 지급되었습니다.`);
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("open");
+    }
+
+    function updateHeader() {
+      const badge = document.getElementById("navTierBadge");
+      badge.className = "tier-badge tier-" + state.user.tier;
+      badge.textContent = state.user.tier;
+      document.getElementById("navUserName").textContent = state.user.name;
+      document.getElementById("navPoints").textContent = state.user.points.toLocaleString();
+      document.getElementById("cartCount").textContent = state.cart.length;
+      document.getElementById("libCountNav").textContent = state.library.length;
+    }
+
+    function scrollToLibrary() {
+      document.getElementById("library").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3200);
+    }
+
+    // Initialize
+    updateHeader();
+    renderTiers();
+    renderGames();
+    renderLibrary();
+  </script>
+</body>
+</html>
